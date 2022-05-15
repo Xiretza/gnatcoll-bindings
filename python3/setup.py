@@ -195,6 +195,9 @@ class GNATCollPython(SetupApp):
     def install(self, args):
         config = Config()
         has_static_python = "GNATCOLL_PYTHON_STATIC_LIB" in config.data["gprbuild"]
+        if args.prefix is not None:
+            config.set_data('prefix', args.prefix)
+
         if has_static_python:
             python_la = config.data["gprbuild"]["GNATCOLL_PYTHON_STATIC_LIB"]
             prefix = config.data["prefix"]
